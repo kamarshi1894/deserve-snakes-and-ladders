@@ -14,7 +14,13 @@ public class Board {
             System.out.println("there is already a snake at position : " + start);
             return;
         }
-        snakesMap.put(start, new Snake(start, end));
+
+        if (Snake.isValid(start, end)) {
+            snakesMap.put(start, new Snake(start, end));
+        } else {
+            System.out.println("start position cannot be lesser than end position for snake");
+        }
+
     }
 
     public int move(int currentPosition, int delta) {
@@ -33,5 +39,9 @@ public class Board {
         }
 
         return newPosition;
+    }
+
+    public int getSize() {
+        return this.size;
     }
 }
