@@ -28,6 +28,7 @@ public class Board {
         }
 
         else if (snakesMap.containsKey(newPosition)) {
+            System.out.println("snake encountered at " + newPosition);
             return snakesMap.get(newPosition).getEnd();
         }
 
