@@ -14,4 +14,8 @@ public class Snake {
     public int getEnd() {
         return end;
     }
+
+    public static boolean isValid(int start, int end) {
+        return start >= 1 && start > end;
+    }
 }
