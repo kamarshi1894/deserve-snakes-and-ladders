@@ -48,4 +48,8 @@ public class Game {
     public int getPosition() {
         return this.position;
     }
+
+    public Board getBoard() {
+        return this.board;
+    }
 }
