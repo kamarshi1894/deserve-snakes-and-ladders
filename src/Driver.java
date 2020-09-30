@@ -16,9 +16,9 @@ public class Driver {
         System.out.println("Enter number of max moves");
         int maxNumMoves = sc.nextInt();
 
-        Game game = new Game(boardSize, diceStrategy, numDiceFaces);
+        Game game = new Game(boardSize, diceStrategy, numDiceFaces, 10);
 
-        while (game.getNumberOfMoves() <= 10 && game.getPosition() < boardSize) {
+        while (!game.getGameOver()) {
             System.out.println("Enter action :\n" +
                                "1 to add a snake\n" +
                                "2 to make a move");

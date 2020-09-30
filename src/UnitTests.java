@@ -3,14 +3,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UnitTests {
-    private int boardSize = 100;
-    private int numDiceFaces = 6;
+    private final int boardSize = 100;
+    private final int numDiceFaces = 6;
+    private final int maxNumberOfMoves = 10;
 
     @Test
     void checkCrookedDiceValueIsEven() {
-        Game crookedDiceGame = new Game(boardSize, "crooked", numDiceFaces);
+        System.out.println("checkCrookedDiceValueIsEven");
 
-        for (int i = 0; i < 20; i++) {
+        Game crookedDiceGame = new Game(boardSize, "crooked", numDiceFaces, maxNumberOfMoves);
+
+        while (!crookedDiceGame.getGameOver()) {
             int oldPosition = crookedDiceGame.getPosition();
             crookedDiceGame.makeMove();
             int newPosition = crookedDiceGame.getPosition();
@@ -21,7 +24,9 @@ public class UnitTests {
 
     @Test
     void checkAdditionOfValidSnake() {
-        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces);
+        System.out.println("checkAdditionOfValidSnake");
+
+        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces, maxNumberOfMoves);
 
         int oldNumberOfSnakes = fairDiceGame.getBoard().getSnakesMap().size();
         fairDiceGame.addSnake(23, 15);
@@ -32,7 +37,9 @@ public class UnitTests {
 
     @Test
     void checkAdditionOfInvalidSnake() {
-        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces);
+        System.out.println("checkAdditionOfInvalidSnake");
+
+        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces, maxNumberOfMoves);
 
         int oldNumberOfSnakes = fairDiceGame.getBoard().getSnakesMap().size();
         fairDiceGame.addSnake(15, 23);
@@ -49,7 +56,9 @@ public class UnitTests {
 
     @Test
     void checkAdditionOfSnakeAtSamePosition() {
-        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces);
+        System.out.println("checkAdditionOfSnakeAtSamePosition");
+
+        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces, maxNumberOfMoves);
 
         int oldNumberOfSnakes = fairDiceGame.getBoard().getSnakesMap().size();
         fairDiceGame.addSnake(23, 15);
@@ -66,7 +75,9 @@ public class UnitTests {
 
     @Test
     void checkSnakeWorks() {
-        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces);
+        System.out.println("checkSnakeWorks");
+
+        Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces, maxNumberOfMoves);
 
         fairDiceGame.makeMove();
 
