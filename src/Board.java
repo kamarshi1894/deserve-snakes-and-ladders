@@ -21,6 +21,7 @@ public class Board {
             System.out.println("start position cannot be lesser than end position for snake");
         }
 
+        System.out.println("Snake added at " + start);
     }
 
     public int move(int currentPosition, int delta) {
@@ -43,5 +44,9 @@ public class Board {
 
     public int getSize() {
         return this.size;
+    }
+
+    public Map<Integer, Snake> getSnakesMap() {
+        return this.snakesMap;
     }
 }
