@@ -6,9 +6,6 @@ public class UnitTests {
     private int boardSize = 100;
     private int numDiceFaces = 6;
 
-    // private Game fairDiceGame = new Game(boardSize, "normal", numDiceFaces);
-    // private Game crookedDiceGame = new Game(boardSize, "crooked", numDiceFaces);
-
     @Test
     void checkCrookedDiceValueIsEven() {
         Game crookedDiceGame = new Game(boardSize, "crooked", numDiceFaces);
@@ -40,6 +37,12 @@ public class UnitTests {
         int oldNumberOfSnakes = fairDiceGame.getBoard().getSnakesMap().size();
         fairDiceGame.addSnake(15, 23);
         int newNumberOfSnakes = fairDiceGame.getBoard().getSnakesMap().size();
+
+        assertEquals(0, newNumberOfSnakes - oldNumberOfSnakes);
+
+        oldNumberOfSnakes = fairDiceGame.getBoard().getSnakesMap().size();
+        fairDiceGame.addSnake(23, 0);
+        newNumberOfSnakes = fairDiceGame.getBoard().getSnakesMap().size();
 
         assertEquals(0, newNumberOfSnakes - oldNumberOfSnakes);
     }
@@ -81,5 +84,5 @@ public class UnitTests {
         assertEquals(1, fairDiceGame.getPosition());
     }
 
-    
+
 }
