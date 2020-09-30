@@ -5,13 +5,16 @@ import dice.FairDice;
 public class Game {
     private final Board board;
     private final Dice dice;
+    private final int maxNumberOfMoves;
+    private boolean gameOver = false;
 
     private int position = 0;
     private int numberOfMoves = 0;
 
-    public Game(int boardSize, String diceStrategy, int numDiceFaces) {
+    public Game(int boardSize, String diceStrategy, int numDiceFaces, int maxNumberOfMoves) {
         this.board = new Board(boardSize);
         this.dice = getDice(diceStrategy, numDiceFaces);
+        this.maxNumberOfMoves = maxNumberOfMoves;
     }
 
     private Dice getDice(String strategy, int numDiceFaces) {
@@ -23,14 +26,21 @@ public class Game {
     }
 
     public void makeMove() {
-        int tmp = position;
-        position = board.move(position, dice.roll());
-
         if (position == board.getSize()) {
             System.out.println("The end of the board has been reached. " +
                     "The game has concluded");
+            gameOver = true;
             return;
         }
+
+        if (numberOfMoves == maxNumberOfMoves) {
+            System.out.println("Max number of moves made, game over");
+            gameOver = true;
+            return;
+        }
+
+        int tmp = position;
+        position = board.move(position, dice.roll());
 
         System.out.println(String.format("moved from %s to %s", tmp, position));
 
@@ -51,5 +61,9 @@ public class Game {
 
     public Board getBoard() {
         return this.board;
+    }
+
+    public boolean getGameOver() {
+        return this.gameOver;
     }
 }
