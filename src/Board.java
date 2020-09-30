@@ -24,6 +24,14 @@ public class Board {
         System.out.println("Snake added at " + start);
     }
 
+    private int goThroughSnake(int position) {
+        if (snakesMap.containsKey(position)) {
+            System.out.println("snake encountered at " + position);
+            return snakesMap.get(position).getEnd();
+        }
+        return position;
+    }
+
     public int move(int currentPosition, int delta) {
         int newPosition = currentPosition + delta;
 
@@ -34,10 +42,7 @@ public class Board {
             return currentPosition;
         }
 
-        else if (snakesMap.containsKey(newPosition)) {
-            System.out.println("snake encountered at " + newPosition);
-            return snakesMap.get(newPosition).getEnd();
-        }
+        newPosition = goThroughSnake(newPosition);
 
         return newPosition;
     }
